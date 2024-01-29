@@ -8,11 +8,10 @@ def main():
     print("Simple Todo list")
 
     try:
-        f = open("todo.json", "r+")
-        print("\nFound existing todo list!\n")
-        todo_list = json.load(f)
+        with open("todo.json", "r") as f:
+            print("\nFound existing todo list!\n")
+            todo_list = json.load(f)
     except FileNotFoundError:
-        f = open("todo.json", "w+")
         print("\nNo todo list was found, created new!\n")
 
     while True:
@@ -29,8 +28,8 @@ def main():
             case "d": core.delete_task(todo_list)
             case "Nuke": core.nuke_list(todo_list)
             case "exit":
-                json.dump(todo_list, f)
-                f.close()
+                with open("todo.json", "w") as f:
+                    json.dump(todo_list, f, ensure_ascii=False)
                 break
             case _: print("Unknown command\n")
 
