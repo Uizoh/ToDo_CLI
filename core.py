@@ -1,5 +1,7 @@
 import utils
 
+c = utils.Colour
+
 
 def is_empty(item):
     if not item:
@@ -11,128 +13,138 @@ def is_empty(item):
 def print_list(todo_list: dict):
 
     if is_empty(todo_list):
-        print("Looks like your todo list is empty...\n")
+        print(f"{c.ORANGE}Looks like your todo list is empty...{c.RESET}\n")
         return
 
+    print(f"Here is your todo list:{c.BLUE}")
     for keys, values in todo_list.items():
         print(f"{keys}")
 
         for v in values:
             print(f"- {v}")
-    print()
+    print(c.RESET)
 
 
-def add_entry(todo_list: dict):
+def add_title(todo_list: dict):
 
-    print("Enter new entry name: ", end="")
-    entry_name = input()
+    print("Enter new title name: ", end="")
+    title_name = input()
 
-    if entry_name in todo_list:
-        print("This entry already exists!\n")
+    if title_name in todo_list:
+        print(f"{c.RED}This title already exists!{c.RESET}\n")
         return
 
-    todo_list[entry_name] = []
+    todo_list[title_name] = []
+    print(f"{c.GREEN}Title added successfully{c.RESET}")
 
 
 def add_task(todo_list: dict):
 
     if is_empty(todo_list):
-        print("Please add an entry first to add tasks. Entries are titles for specific todo list\n")
+        print(f"{c.RED}Please add an title first to add tasks. These are headers for todo lists{
+              c.RESET}\n")
         return
 
-    print("Select an entry to add a task: \n")
+    print(f"{c.CYAN}Select an title to add a task: {c.RESET}\n")
 
     temp_list = utils.create_indexed_list(todo_list)
     utils.print_indexed_list(temp_list)
 
-    print("Enter number for the entry: ", end="")
+    print("Enter number for the title: ", end="")
     response = int(input())
     response -= 1
 
     if response < 0 or response >= len(temp_list):
-        print("Selected number does not exist in entry list!\n")
+        print(f"{c.RED}Selected number does not exist in title list!{c.RESET}\n")
         return
 
-    selected_entry: str = temp_list[response]
+    selected_title: str = temp_list[response]
 
     print("Enter task name: ", end="")
     task_name = input()
 
-    todo_list[selected_entry].append(task_name)
+    todo_list[selected_title].append(task_name)
+    print(f"{c.GREEN}\nTask was successfully added{c.RESET}")
 
 
-def delete_entry(todo_list: dict):
+def delete_title(todo_list: dict):
 
     if is_empty(todo_list):
-        print("There are no enties to delete from\n")
+        print(f"{c.RED}\nThere are no enties to delete from{c.RESET}\n")
         return
 
-    print("Select an entry to delete: \n")
+    print(f"{c.CYAN}Select an title to delete: \n{c.RESET}")
 
     temp_list = utils.create_indexed_list(todo_list)
     utils.print_indexed_list(temp_list)
 
-    print("Enter the entry number you want to delete: ", end="")
+    print("Enter the title number you want to delete: ", end="")
     response = int(input())
     response -= 1
 
     if response < 0 or response >= len(temp_list):
-        print("Entered number does not exist in the list!\n")
+        print(f"{c.RED}\nEntered number does not exist in the list{c.RESET}!\n")
         return
 
-    selected_entry: str = temp_list[response]
+    selected_title: str = temp_list[response]
 
-    todo_list.pop(selected_entry)
-    print()
+    todo_list.pop(selected_title)
+    print(f"{c.HIGHLIGHT}{
+          c.ORANGE}\nTitle was deleted along with it's tasks{c.RESET}")
 
 
 def delete_task(todo_list: dict):
 
     if is_empty(todo_list):
-        print("There are no enties to delete from\n")
+        print(f"{c.RED}There are no enties to delete from{c.RESET}\n")
         return
 
-    print("Select an entry to delete a task from: \n")
+    print(f"{c.CYAN}Select an title to delete a task from: \n{c.RESET}")
 
     temp_list = utils.create_indexed_list(todo_list)
     utils.print_indexed_list(temp_list)
 
-    print("Enter the number of the entry: ", end="")
+    print("Enter the number of the title: ", end="")
     response = int(input())
     response -= 1
 
     if response < 0 or response >= len(temp_list):
-        print("Selected number does not exist in entry list!\n")
+        print(f"{c.RED}Selected number does not exist in title list!{c.RESET}\n")
         return
 
-    selected_entry: str = temp_list[response]
+    selected_title: str = temp_list[response]
 
-    if is_empty(todo_list[selected_entry]):
-        print("This entry does not have any task\n")
+    if is_empty(todo_list[selected_title]):
+        print(f"{c.RED}This title does not have any task{c.RESET}\n")
         return
 
-    print("Select a task to delete from the list: \n")
-    for i in range(len(todo_list[selected_entry])):
-        print(f"{i+1}. {todo_list[selected_entry][i]}")
+    print(f"{c.CYAN}Select a task to delete from the list: \n{c.RESET}")
+
+    print(c.BLUE, end="")
+
+    for i in range(len(todo_list[selected_title])):
+        print(f"{i+1}. {todo_list[selected_title][i]}")
+
+    print(c.RESET, end="")
 
     print("Enter the task number to delete: ", end="")
     response = int(input())
     response -= 1
 
-    if todo_list[selected_entry][response] is None:
-        print("Selected number does not exist in the task list!\n")
+    if todo_list[selected_title][response] is None:
+        print(f"{c.RED}\nSelected number does not exist in the task list!{c.RESET}\n")
         return
 
-    todo_list[selected_entry].pop(response)
-    print()
+    todo_list[selected_title].pop(response)
+    print(f"{c.HIGHLIGHT}{c.ORANGE}Selected task was deleted successfully")
 
 
-def nuke_list(todo_list: dict):
-    print("Are you sure you want to delete the whole ToDo list? y/n")
+def clear_list(todo_list: dict):
+    print(f"{c.CYAN}Are you sure you want to delete the whole ToDo list? y/n: {c.RESET}", end="")
     response = input()
 
     if response == 'y':
         todo_list.clear()
-        print()
+        print(f"{c.HIGHLIGHT}{c.RED}\nTodo list has been cleared! {c.RESET}")
     else:
-        print("List deletion cancled\n")
+        print(f"{c.RED}List deletion cancled{c.RESET}\n")
