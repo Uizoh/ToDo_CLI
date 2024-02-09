@@ -1,8 +1,6 @@
 import core
-import utils
+from utils import Colour as c
 import json
-
-c = utils.Colour
 
 
 def main():

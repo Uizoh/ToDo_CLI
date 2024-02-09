@@ -1,6 +1,5 @@
 import utils
-
-c = utils.Colour
+from utils import Colour as c
 
 
 def is_empty(item):
