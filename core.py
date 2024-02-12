@@ -1,17 +1,11 @@
 import utils
-from utils import Colour as c
 
-
-def is_empty(item):
-    if not item:
-        return True
-    else:
-        return False
+c = utils.Colour
 
 
 def print_list(todo_list: dict):
 
-    if is_empty(todo_list):
+    if utils.is_empty(todo_list):
         print(f"{c.ORANGE}Looks like your todo list is empty...{c.RESET}\n")
         return
 
@@ -39,7 +33,7 @@ def add_title(todo_list: dict):
 
 def add_task(todo_list: dict):
 
-    if is_empty(todo_list):
+    if utils.is_empty(todo_list):
         print(f"{c.RED}Please add an title first to add tasks. These are headers for todo lists{
               c.RESET}\n")
         return
@@ -68,7 +62,7 @@ def add_task(todo_list: dict):
 
 def delete_title(todo_list: dict):
 
-    if is_empty(todo_list):
+    if utils.is_empty(todo_list):
         print(f"{c.RED}\nThere are no enties to delete from{c.RESET}\n")
         return
 
@@ -94,7 +88,7 @@ def delete_title(todo_list: dict):
 
 def delete_task(todo_list: dict):
 
-    if is_empty(todo_list):
+    if utils.is_empty(todo_list):
         print(f"{c.RED}There are no enties to delete from{c.RESET}\n")
         return
 
@@ -113,7 +107,7 @@ def delete_task(todo_list: dict):
 
     selected_title: str = temp_list[response]
 
-    if is_empty(todo_list[selected_title]):
+    if utils.is_empty(todo_list[selected_title]):
         print(f"{c.RED}This title does not have any task{c.RESET}\n")
         return
 
