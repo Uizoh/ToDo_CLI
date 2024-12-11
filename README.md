@@ -7,7 +7,7 @@ Uses JSON to store the todo list in the same directory.
 
 A task must be initiated under a **Title** for ease or organization.  
 A title is like a group that couples a bunch of tasks together.  
-There can be more than one title with their own independent tasks.  
+There can be more than one title with their own respective tasks.  
 To deleting a specific task, you must nevigate to it. Same with titles.  
 Deleting a title will also delete all the under-lying tasks.  
 
