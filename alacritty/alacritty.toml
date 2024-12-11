@@ -1,0 +1,31 @@
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Super"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Shift"
+chars = "_"
+
+[font.normal]
+family = "DejaVuSansM Nerd Font Mono"
+style = "Regular"
+
+[font]
+size = 14
+
+[scrolling]
+multiplier = 4
+
+[window]
+opacity = 0.98
+
+[window.padding]
+x = 4
+y = 4
+
+[general]
+import = ["/home/uizoh/.config/alacritty/catppuccin-mocha.toml"]
+
