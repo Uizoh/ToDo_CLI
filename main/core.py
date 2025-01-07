@@ -1,10 +1,9 @@
-import utils
+from . import utils
 
 c = utils.Colour
 
 
-def print_list(todo_list: dict):
-
+def print_list(todo_list: dict[str, list[str]]):
     if utils.is_empty(todo_list):
         print(f"{c.ORANGE}Looks like your todo list is empty...{c.RESET}\n")
         return
@@ -18,8 +17,7 @@ def print_list(todo_list: dict):
     print(c.RESET)
 
 
-def add_title(todo_list: dict):
-
+def add_title(todo_list: dict[str, list[str]]):
     print("Enter new title name: ", end="")
     title_name = input()
 
@@ -31,11 +29,12 @@ def add_title(todo_list: dict):
     print(f"{c.GREEN}Title added successfully{c.RESET}")
 
 
-def add_task(todo_list: dict):
-
+def add_task(todo_list: dict[str, list[str]]):
     if utils.is_empty(todo_list):
-        print(f"{c.RED}Please add an title first to add tasks. These are headers for todo lists{
-              c.RESET}\n")
+        print(
+            f"{c.RED}Please add an title first to add tasks. These are headers for todo lists{
+              c.RESET}\n"
+        )
         return
 
     print(f"{c.CYAN}Select an title to add a task: {c.RESET}\n")
@@ -60,8 +59,7 @@ def add_task(todo_list: dict):
     print(f"{c.GREEN}\nTask was successfully added{c.RESET}")
 
 
-def delete_title(todo_list: dict):
-
+def delete_title(todo_list: dict[str, list[str]]):
     if utils.is_empty(todo_list):
         print(f"{c.RED}\nThere are no enties to delete from{c.RESET}\n")
         return
@@ -82,12 +80,13 @@ def delete_title(todo_list: dict):
     selected_title: str = temp_list[response]
 
     todo_list.pop(selected_title)
-    print(f"{c.HIGHLIGHT}{
-          c.ORANGE}\nTitle was deleted along with it's tasks{c.RESET}")
+    print(
+        f"{c.HIGHLIGHT}{
+          c.ORANGE}\nTitle was deleted along with it's tasks{c.RESET}"
+    )
 
 
-def delete_task(todo_list: dict):
-
+def delete_task(todo_list: dict[str, list[str]]):
     if utils.is_empty(todo_list):
         print(f"{c.RED}There are no enties to delete from{c.RESET}\n")
         return
@@ -132,11 +131,14 @@ def delete_task(todo_list: dict):
     print(f"{c.HIGHLIGHT}{c.ORANGE}Selected task was deleted successfully")
 
 
-def clear_list(todo_list: dict):
-    print(f"{c.CYAN}Are you sure you want to delete the whole ToDo list? y/n: {c.RESET}", end="")
+def clear_list(todo_list: dict[str, list[str]]):
+    print(
+        f"{c.CYAN}Are you sure you want to delete the whole ToDo list? y/n: {c.RESET}",
+        end="",
+    )
     response = input()
 
-    if response == 'y':
+    if response == "y":
         todo_list.clear()
         print(f"{c.HIGHLIGHT}{c.RED}\nTodo list has been cleared! {c.RESET}")
     else:

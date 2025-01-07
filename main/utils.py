@@ -9,19 +9,19 @@ class Colour:
     HIGHLIGHT = "\033[;7m"
 
 
-def is_empty(item):
+def is_empty(item: list[str] | dict[str, list[str]]):
     if not item:
         return True
     else:
         return False
 
 
-def create_indexed_list(todo_list: dict) -> list[str]:
+def create_indexed_list(todo_list: dict[str, list[str]]) -> list[str]:
     temp_list: list[str] = [x for x in todo_list.keys()]
     return temp_list
 
 
-def print_indexed_list(temp_list: list):
+def print_indexed_list(temp_list: list[str]):
     # To present the list with index
     print(Colour.BLUE, end="")
 
